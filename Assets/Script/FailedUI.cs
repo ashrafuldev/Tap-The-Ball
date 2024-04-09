@@ -1,20 +1,21 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class FailedUI : MonoBehaviour
 {
-    [SerializeField] private BallController _ballController;
+    [SerializeField] private BallController ballController;
     // Start is called before the first frame update
 
     private void OnEnable()
     {
-        _ballController.OnFailed += FailedUIShow;
+        ballController.OnFailed += FailedUIShow;
     }
 
     private void OnDisable()
     {
-        _ballController.OnFailed -= FailedUIShow;
+        ballController.OnFailed -= FailedUIShow;
     }
 
     private void FailedUIShow()

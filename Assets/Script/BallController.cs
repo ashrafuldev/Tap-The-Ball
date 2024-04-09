@@ -26,6 +26,7 @@ public class BallController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        PlayerPrefs.SetString("FailedScore","0");
     }
 
     private void Update()
@@ -91,15 +92,12 @@ public class BallController : MonoBehaviour
             currentBall++;
             Destroy(other.gameObject);
             _score++;
-            
             scoreText.text = _score.ToString();
             
             if (currentBall==greenBalls.Length)
             {
                 print("GameOver");
                 OnGameOver?.Invoke();
-                //_gameEnded = true;
-                //successUI.SetActive(true);
             }
         }
         
@@ -113,12 +111,16 @@ public class BallController : MonoBehaviour
             // Check for game over
             if (_life <= 0)
             {
-                print("failed");
+                PlayerPrefs.SetString("FailedScore",scoreText.text);
                 OnFailed?.Invoke();
-                /*gameEnded = true;
-                failedUI.SetActive(true);#2#*/
-            }
+            } 
         }
+        
+        else if(other.gameObject.CompareTag("Falls"))
+        {
+            PlayerPrefs.SetString("FailedScore",scoreText.text);
+            OnFailed?.Invoke();
+        }
+        
     }
-    
 }

@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameOverUI: MonoBehaviour
  {
-     [SerializeField] private BallController _ballController;
+     [SerializeField] private BallController ballController;
      private void OnEnable()
      {
-         _ballController.OnGameOver += GameOver;
+         ballController.OnGameOver += GameOver;
      }
 
      private void OnDisable()
      {
-         _ballController.OnGameOver -= GameOver;
+         ballController.OnGameOver -= GameOver;
      }
 
      private void GameOver()
