@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class SuccessUI : MonoBehaviour
+public class UpdateUI : MonoBehaviour
 {
    public void Exit()
    {
@@ -11,8 +11,5 @@ public class SuccessUI : MonoBehaviour
    {
       SceneManager.LoadScene("GameScene");
    }
-   public void Replay()
-   {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-   }
+  
 }
