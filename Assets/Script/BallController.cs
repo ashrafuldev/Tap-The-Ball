@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-
 
 public class BallController : MonoBehaviour
 {
@@ -19,7 +17,7 @@ public class BallController : MonoBehaviour
     private int _score = 0;
     private int _life = 10;
 
-    private int currentBall = 0;
+    private int _currentBall = 0;
 
     public event Action OnGameOver;
     public event Action OnFailed;
@@ -55,7 +53,7 @@ public class BallController : MonoBehaviour
         }
     }
     
-    bool IsClickOnTable()
+    private bool IsClickOnTable()
     {
        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -89,12 +87,12 @@ public class BallController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("GreenBall"))
         {
-            currentBall++;
+            _currentBall++;
             Destroy(other.gameObject);
             _score++;
             scoreText.text = _score.ToString();
             
-            if (currentBall==greenBalls.Length)
+            if (_currentBall==greenBalls.Length)
             {
                 print("GameOver");
                 OnGameOver?.Invoke();
